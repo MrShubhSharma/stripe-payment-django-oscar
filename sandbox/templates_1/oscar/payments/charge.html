@@ -1,0 +1,100 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payment Gateway</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Payment Gateway</h1>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <form action="{% url 'charge' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="amount">Amount:</label>
+              <input type="number" class="form-control" id="amount" name="amount" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="payment_method">Payment Method:</label>
+                <select class="form-control" id="payment_method" name="payment_method" required>
+                  <option value="card">Credit/Debit Card</option>
+                  <option value="upi">UPI</option>
+                  <option value="barcode">Bar-Code</option>
+                </select>
+                <img id="barcode_image" src="{% static 'images/Bar_codee.jpg' %}" alt="Barcode Image" width="200">
+              
+              <script>
+                const paymentMethodSelect = document.getElementById('payment_method');
+                const barcodeImage = document.getElementById('barcode_image');
+
+                paymentMethodSelect.addEventListener('change', () => {
+                if (paymentMethodSelect.value === 'barcode') {
+                    barcodeImage.style.display = 'block';
+                } else {
+                    barcodeImage.style.display = 'none';
+                }
+                });
+
+              </script>
+            </div>              
+              
+            <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ STRIPE_PUBLISHABLE_KEY }}"
+            data-amount=""
+            data-name="Payment"
+            data-description="Payment Gateway GAPLU"
+            data-image="https://goldeneagle.ai/static/images/logo/logo1.png"
+            data-locale="auto">
+        </script>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <img src="https://goldeneagle.ai/static/images/logo/logo1.png" alt="Payment Logo">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+          <p>Powered by GEITPL</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+<!-- 
+    <form action="{% url 'charge' %}" method="post">
+        {% csrf_token %}
+        <label for="email">Email address:</label>
+        <input type="email" id="email" name="email"><br>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" min="1"><br>
+        <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ STRIPE_PUBLISHABLE_KEY }}"
+            data-amount=""
+            data-name="Payment"
+            data-description="Widget"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto">
+        </script>
+    </form>
+ -->

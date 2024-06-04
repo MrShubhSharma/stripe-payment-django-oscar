@@ -1,0 +1,24 @@
+Content-Type: multipart/alternative;
+ boundary="===============2370038848586837932=="
+MIME-Version: 1.0
+Subject: Thank you for registering.
+From: oscar@example.com
+To: Shivam1234@gmail.com
+Date: Mon, 03 Jun 2024 09:03:40 -0000
+Message-ID: <171740542016.15008.1978949456963464860@DESKTOP-QAIOJ7I>
+
+--===============2370038848586837932==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Thank you for registering.
+--===============2370038848586837932==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<p>Thank you for registering.</p>
+--===============2370038848586837932==--
+
+-------------------------------------------------------------------------------
